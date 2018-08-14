@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Slideshow</title>
+</head>
+<body>
+    <img id="pic" alt="" height="500px">
+    
+    <script>
+const link = 'https://api.unsplash.com/photos/?client_id=9c09ff07ae96eed755b92ff7481a527e8e03e77d8999114bb4a0280071d60d25';
+
+
+window.onload = () => {
+    fetch(link)
+        .then(response => {
+            return response.json();
+        })
+        .then(myJson => {
+
+            let i=0;
+            setInterval( () => {
+                document.querySelector('#pic').srcset=myJson[i].urls.regular;
+                (i < myJson.length -1) ? i++: i = 0;
+            },2000);
+        });
+}
+
+    </script>
+</body>
+</html>
